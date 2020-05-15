@@ -6,22 +6,31 @@ import java.util.List;
 public class Main {
 
     public static void main(String[] args) {
+
         Help help = new Help();
-        int sizeOfList = 1000;
-        int maxLongWords = 15;
+        int sizeOfList = 20_000_000;
+        int maxLongWords = 20;
 
         long start = System.currentTimeMillis();
         List<String> list = help.getList(sizeOfList, maxLongWords);
         long end = System.currentTimeMillis();
         long time=end - start;
 
+
         long m1 = measureTimeFor_i(list);
         long m2 = measureTimeFor_each(list);
         long m3 = measureTimeStream(list);
         long m4 = measureTimeParallelStream(list);
 
+//        System.out.println(m1);
+//        System.out.println(m2);
+//        System.out.println(m3);
+//        System.out.println(m4);
+
+        // save results in the database
+        String sizeOfListS=String.format("%,d", sizeOfList);
         try {
-            help.save(m1, m2, m3, m4, sizeOfList, time);
+       help.save(m1, m2, m3, m4, sizeOfListS ,time);
         } catch (SQLException e) {
             e.printStackTrace();
         }

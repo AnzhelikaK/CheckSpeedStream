@@ -30,22 +30,21 @@ class Help {
         return word.toString();
     }
 
-    void save(long m1, long m2, long m3, long m4, long size, long time) throws SQLException {
+    void save(long m1, long m2, long m3, long m4, String size, long time) throws SQLException {
 
-        String sql = "insert into checkspeed(For_i, For_each, Stream, ParallelStream,sizeOfList,TimeOfCreateList) values (?,?,?,?,?,?);";
-
+        String sql = "insert into checkspeedstream(For_i, For_each, Stream, ParallelStream,sizeOfList,TimeOfCreateList) values (?,?,?,?,?,?);";
         PreparedStatement preparedStatement = connection.prepareStatement(sql);
         preparedStatement.setLong(1, m1);
         preparedStatement.setLong(2, m2);
         preparedStatement.setLong(3, m3);
         preparedStatement.setLong(4, m4);
-        preparedStatement.setLong(5, size);
+        preparedStatement.setString(5, size);
         preparedStatement.setLong(6, time);
         preparedStatement.executeUpdate();
-
         preparedStatement.close();
         connection.close();
 
     }
+
 }
 

@@ -9,9 +9,9 @@ public class DBConnection {
     private DBConnection() { }
 
     public static Connection getConnection() {
-        String userName = "root";
-        String password = "123";
-        String connectionUrl="jdbc:mysql://localhost:3306/anzh?useUnicode=true&serverTimezone=Europe/Moscow";
+        String userName = "userName";
+        String password = "password";
+        String connectionUrl="driver";
         try {
             connection= DriverManager.getConnection(connectionUrl, userName, password );
         } catch (SQLException e) {
